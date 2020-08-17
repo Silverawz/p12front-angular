@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
+import { NgForm } from '@angular/forms';
+import { RegistrationService } from '../registration.service';
+import { User } from '../user';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,9 +9,17 @@ import { NgForm } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  private user = new User();
+  constructor(private _service : RegistrationService) { }
 
   ngOnInit(): void {
+  }
+
+  loginUser(){
+    this._service.loginUserFromRemote(this.user).subscribe(
+      data =>   console.log("response received"),
+      error =>  console.log("exception occured")
+    )
   }
 
 }
