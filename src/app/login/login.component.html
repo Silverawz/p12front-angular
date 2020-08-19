@@ -1,13 +1,22 @@
 <div class="container">
     <form #loginform="ngForm" (ngSubmit)="loginUser()">
+      <small class="text-danger">{{msg}}</small>
         <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="johndoe@gmail.com" [(ngModel)]="user.email">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+          placeholder="johndoe@gmail.com" [(ngModel)]="user.email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" 
+          
+          #email="ngModel" name="email"
+          [class.is-invalid]="email.invalid && email.touched">
         </div>
         <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" [(ngModel)]="user.password">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" 
+          placeholder="password" [(ngModel)]="user.password" name="password" #password="ngModel" required minlength="5"
+          [class.is-invalid]="password.invalid && password.touched">
         </div>
-        <button type="submit" class="btn btn-info">Login</button>
+        <button [disabled]="loginform.form.invalid" type="submit" class="btn btn-info">Login</button>
   </form>
+  <!-- <small class="text-info float-right" (click)="goToRegistration()">New user ? register here</small> -->
+  <small class="text-info float-right" [routerLink]="['/registration']">New user ? register here</small>
 </div>

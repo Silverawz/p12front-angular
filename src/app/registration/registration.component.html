@@ -1,1 +1,37 @@
-<p>registration works!</p>
+<div style="min-width: 100%; min-height: 200%; background-image: url('https://previews.123rf.com/images/aksanayasiuchenia/aksanayasiuchenia1509/aksanayasiuchenia150900148/46145100-fond-textur%C3%A9-wood-texture-fond-beige-bois.jpg');">
+    <br>
+    <div class="container" style="max-width: 600px; background-color: white;">
+    <h2 class="textual">User Registration</h2>
+   <form #registrationform="ngForm" (ngSubmit)="registerUser()">
+    <small class="text-danger">{{msg}}</small>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="email" 
+            placeholder="johndoe@aol.com" [(ngModel)]="user.email" name="email" #email="ngModel" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" 
+            [class.is-invalid]="email.invalid && email.touched">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Firstname</label>
+            <input type="firstname" class="form-control" id="firstname" 
+            placeholder="john" [(ngModel)]="user.firstname" name="firstname" #firstname="ngModel" required minlength="3"
+            [class.is-invalid]="firstname.invalid && firstname.touched">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Lastname</label>
+            <input type="lastname" class="form-control" id="lastname" 
+            placeholder="doe" [(ngModel)]="user.lastname" name="lastname" #lastname="ngModel" required minlength="3"
+            [class.is-invalid]="lastname.invalid && lastname.touched">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password" 
+            placeholder="password" [(ngModel)]="user.password" name="password" #password="ngModel" required minlength="5"
+            [class.is-invalid]="password.invalid && password.touched">
+        </div>
+        <button [disabled]="registrationform.form.invalid" type="submit" class="btn btn-info">Register</button>
+   </form>>
+</div>
+
+
+
+

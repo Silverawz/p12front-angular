@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { User } from '../user';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,17 +11,28 @@ import { User } from '../user';
 })
 export class LoginComponent implements OnInit {
 
-  private user = new User();
-  constructor(private _service : RegistrationService) { }
+  user = new User();
+  msg='';
+  constructor(private _service : RegistrationService, private _router : Router) { }
 
   ngOnInit(): void {
   }
 
   loginUser(){
     this._service.loginUserFromRemote(this.user).subscribe(
-      data =>   console.log("response received"),
-      error =>  console.log("exception occured")
+      data =>   {
+        console.log("response received");
+        this._router.navigate(['/loginsuccess']);
+      },
+      error =>  {  
+        console.log("exception occured");
+        this.msg = "bad credentials, please enter valid email or password";
+      }
     )
+  }
+
+  goToRegistration(){
+    this._router.navigate(['/registration']);
   }
 
 }
