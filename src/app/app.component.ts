@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from './_service/token-storage.service';
+import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -7,29 +7,29 @@ import { TokenStorageService } from './_service/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'ngassociation';
-
   private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
-  showMemberBoard = false;
-  username : string;
+  showModeratorBoard = false;
+  username: string;
 
-  constructor(private tokenStorageService: TokenStorageService) {}
+  constructor(private tokenStorageService: TokenStorageService) { }
 
-  ngOnInit() : void {
+  ngOnInit() {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-    if(this.isLoggedIn){
+    if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
+
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showMemberBoard = this.roles.includes('ROLE_MEMBER');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
       this.username = user.username;
     }
   }
 
-  logout() : void {
+  logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
   }

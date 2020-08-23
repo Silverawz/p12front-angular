@@ -1,29 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../_service/token-storage.service';
-import { AuthService } from '../_service/auth.service';
+import { AuthService } from '../_services/auth.service';
+import { TokenStorageService } from '../_services/token-storage.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  form:any = {};
+  form: any = {};
   isLoggedIn = false;
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService:AuthService, private tokenStorage : TokenStorageService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
-  ngOnInit(): void {
-    if (this.tokenStorage.getToken()){
+  ngOnInit() {
+    if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
   }
 
-  onSubmit(): void {
+  onSubmit() {
     this.authService.login(this.form).subscribe(
       data => {
         this.tokenStorage.saveToken(data.accessToken);
@@ -38,11 +38,10 @@ export class LoginComponent implements OnInit {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
       }
-    )
+    );
   }
 
-  reloadPage(): void {
+  reloadPage() {
     window.location.reload();
   }
-
 }
