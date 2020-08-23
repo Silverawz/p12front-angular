@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { RegistrationService } from '../registration.service';
-import { User } from '../user';
-import { Route } from '@angular/compiler/src/core';
-import { Router } from '@angular/router';
+import { TokenStorageService } from '../_service/token-storage.service';
+import { AuthService } from '../_service/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,28 +8,41 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  user = new User();
-  msg='';
-  constructor(private _service : RegistrationService, private _router : Router) { }
+  form:any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+
+  constructor(private authService:AuthService, private tokenStorage : TokenStorageService) { }
 
   ngOnInit(): void {
+    if (this.tokenStorage.getToken()){
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getUser().roles;
+    }
   }
 
-  loginUser(){
-    this._service.loginUserFromRemote(this.user).subscribe(
-      data =>   {
-        console.log("response received");
-        this._router.navigate(['/loginsuccess']);
+  onSubmit(): void {
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
       },
-      error =>  {  
-        console.log("exception occured");
-        this.msg = "bad credentials, please enter valid email or password";
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
       }
     )
   }
 
-  goToRegistration(){
-    this._router.navigate(['/registration']);
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

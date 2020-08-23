@@ -1,2 +1,65 @@
-<router-outlet></router-outlet>
-<app-security></app-security>
+
+<div id="app">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">bezKoder</a>
+    <ul class="navbar-nab mr-auto" routerLinkActive="active">
+        <li ckass="nav-item">
+            <a href="/home" class="nav-link" routerLink="home">Home</a>
+        </li>
+        <li ckass="nav-item" *ngIf="showMemberBoard">
+            <a href="/member" class="nav-link" routerLink="member">Member Board</a>
+        </li>
+        <li ckass="nav-item" *ngIf="showAdminBoard">
+            <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
+        </li>
+        <li ckass="nav-item">
+            <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nab ml-auto" *ngIf="!isLoggedIn">
+        <li ckass="nav-item">
+            <a href="/register" class="nav-link" routerLink="register">Sign up</a>
+        </li>
+        <li ckass="nav-item">
+            <a href="/login" class="nav-link" routerLink="login">Login</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nab ml-auto" *ngIf="isLoggedIn">
+        <li ckass="nav-item">
+            <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+        </li>
+        <li ckass="nav-item">
+            <a href class="nav-link" (click)="logout()")>LogOut</a>
+        </li>
+    </ul>
+</nav>
+
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
