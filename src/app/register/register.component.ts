@@ -14,8 +14,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     this.authService.register(this.form).subscribe(
@@ -24,8 +23,8 @@ export class RegisterComponent implements OnInit {
         this.isSuccessful = true;
         this.isSignUpFailed = false;
       },
-      err => {
-        this.errorMessage = err.error.message;
+      err => {  
+        this.errorMessage = err.error;
         this.isSignUpFailed = true;
       }
     );

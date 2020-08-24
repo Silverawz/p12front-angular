@@ -1,0 +1,23 @@
+.col-md-6{
+    margin: 0 auto;
+    margin-top: 60px;
+    width:80%;  
+}
+
+.card {
+    border-width: 1px;
+    border-color : black;
+    background: rgb(181,178,236);
+    background: linear-gradient(90deg, rgba(181,178,236,1) 0%, rgba(0,255,218,0.6587009803921569) 47%, rgba(9,180,214,1) 100%);
+}
+
+.form-group{
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top:15px;
+    margin-bottom:15px;
+    border-width: 5px;
+    border-color : black;
+    color: black;
+    font-family: sans-serif, Georgia, serif ;
+}
