@@ -1,35 +1,19 @@
-<div class="container" *ngIf="currentUser; else loggedOut">
+<div class="container">
     <header class="jumbotron">
-      <h3>
-        Profile : <strong>{{ currentUser.firstname }}</strong> 
-      </h3>
-      <p>
-        <strong>Token:</strong>
-        {{ currentUser.accessToken.substring(0, 20) }} ...
-        {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-      </p>
-      <p>
-        <strong>Email:</strong>
-        {{ currentUser.email }}
-      </p>
-      <strong>Roles:</strong>
-      <ul>
-        <li *ngFor="let role of currentUser.roles">
-          {{ role }}
-        </li>
-      </ul>
-
-      <br><br><br><br><br><br><br><br><br><br><br>
+      <h1>Les news concernant le football sont disponibles ici.</h1>
+      <br>
+      <button type="button" class="btn btn-primary">Accéder au forum Football</button>
+      <br><br><br><br><br>
+      <p>{{ content }}</p>
+      <br><br><br><br><br>
+      <p> news 1</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      <br><br><br>
+      <p> news 2</p>
       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      <br><br><br>
+      <p> news 3</p>
+      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+      <br><br><br>
     </header>
- 
   </div>
-  
-  <ng-template #loggedOut>
-    <header class="jumbotron">
-
-      Please login.
-    </header>
-  
-  </ng-template>
