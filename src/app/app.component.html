@@ -1,12 +1,12 @@
 <div id="app">
   <div class="topnav" id="myTopnav">
-    <a href="/home" class="active" routerLink="home">Associations sportives</a>
-    <a href="/football" routerLink="football">Football </a>
-    <a href="/basketball" routerLink="basketball">Basketball </a>
-    <a href="/volleyball" routerLink="volleyball">Volleyball </a>
-    <a href="/register" routerLink="register" *ngIf="!isLoggedIn">Sign Up</a>
-    <a href="/login" routerLink="login" *ngIf="!isLoggedIn">Login</a>
-    <a href="/profile" routerLink="profile" *ngIf="isLoggedIn">Profile</a>
+    <a href="/home" id="home" routerLink="home">Associations sportives</a>
+    <a href="/football" id="football" routerLink="football">Football </a>
+    <a href="/basketball" id="basketball" routerLink="basketball">Basketball </a>
+    <a href="/volleyball" id="volleyball" routerLink="volleyball">Volleyball </a>
+    <a href="/register" id="register" routerLink="register" *ngIf="!isLoggedIn">Sign Up</a>
+    <a href="/login" id="login" routerLink="login" *ngIf="!isLoggedIn">Login</a>
+    <a href="/profile" id="profile" routerLink="profile" *ngIf="isLoggedIn">Profile</a>
     <a href class="nav-link" (click)="logout()" *ngIf="isLoggedIn">LogOut</a>
     <a href="javascript:void(0);" class="icon" (click)="burger()">
       <i class="fa fa-bars"></i>

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.activeNavBar();
     this.userService.getPublicContent().subscribe(
       data => {
         this.content = data;
@@ -20,5 +21,18 @@ export class HomeComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+  }
+
+  activeNavBar(){
+    document.getElementById("home").className = "active";
+    document.getElementById("football").className = "unactive";
+    document.getElementById("basketball").className = "unactive";
+    document.getElementById("volleyball").className = "unactive";
+    if(document.body.contains(document.getElementById("register")))
+    document.getElementById("register").className = "unactive";
+    if(document.body.contains(document.getElementById("login")))
+    document.getElementById("login").className = "unactive";
+    if(document.body.contains(document.getElementById("profile")))
+    document.getElementById("profile").className = "unactive";
   }
 }

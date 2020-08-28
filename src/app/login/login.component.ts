@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit() {
+    this.activeNavBar();
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
@@ -42,5 +43,18 @@ export class LoginComponent implements OnInit {
 
   reloadPage() {
     window.location.reload();
+  }
+
+  activeNavBar(){
+    document.getElementById("home").className = "unactive";
+    document.getElementById("football").className = "unactive";
+    document.getElementById("basketball").className = "unactive";
+    document.getElementById("volleyball").className = "unactive";
+    if(document.body.contains(document.getElementById("register")))
+    document.getElementById("register").className = "unactive";
+    if(document.body.contains(document.getElementById("login")))
+    document.getElementById("login").className = "active";
+    if(document.body.contains(document.getElementById("profile")))
+    document.getElementById("profile").className = "unactive";
   }
 }

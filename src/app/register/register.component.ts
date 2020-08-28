@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activeNavBar();
+  }
 
   onSubmit() {
     this.authService.register(this.form).subscribe(
@@ -29,4 +31,18 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
+
+  activeNavBar(){
+    document.getElementById("home").className = "unactive";
+    document.getElementById("football").className = "unactive";
+    document.getElementById("basketball").className = "unactive";
+    document.getElementById("volleyball").className = "unactive";
+    if(document.body.contains(document.getElementById("register")))
+    document.getElementById("register").className = "active";
+    if(document.body.contains(document.getElementById("login")))
+    document.getElementById("login").className = "unactive";
+    if(document.body.contains(document.getElementById("profile")))
+    document.getElementById("profile").className = "unactive";
+  }
+
 }
