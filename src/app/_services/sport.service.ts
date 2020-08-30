@@ -16,5 +16,11 @@ export class SportService {
     return this.http.get<Article[]>(API_URL + 'football/active');
   }
 
+  getPublicVolleyballArticle(): Observable<any> {
+    return this.http.get<Article[]>(API_URL + 'volleyball/active');
+  }
 
+  getPublicBasketballArticle(): Observable<any> {
+    return this.http.get<Article[]>(API_URL + 'basketball/active');
+  }
 }

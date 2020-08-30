@@ -15,6 +15,8 @@ import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { FootballComponent } from './football/football.component';
+import { BasketballComponent } from './basketball/basketball.component';
+import { VolleyballComponent } from './volleyball/volleyball.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { FootballComponent } from './football/football.component';
     BoardModeratorComponent,
     BoardUserComponent,
     FootballComponent,
+    BasketballComponent,
+    VolleyballComponent,
   ],
   imports: [
     BrowserModule,
