@@ -1,6 +1,41 @@
 <div class="container">
     <header class="jumbotron">
-      <p>{{ content }}</p>
-      <button type="button" class="btn btn-primary" routerLink="/profile">Accéder à votre profil</button>
+
+      <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" 
+      type="button" class="btn btn-primary" id="btn-profil" routerLink="/profile">Accéder à votre profil</button>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">Liste de vos articles</div>
+        <div class="panel-body">
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Modifier</th>
+          </tr>
+          <tr *ngFor="let article of articles">
+            <td>{{article.title}}</td>
+            <td>{{article.date|date:'dd-MM-yyyy'}}</td>
+            <td button type="button" class="btn btn-warning">Modifier l'article</td>
+          </tr>
+        </div>
+      </div>
+     
+
+     <!--
+      <div class="content">
+        <ul *ngFor="let article of articles">
+          <td class="title">&nbsp;{{article.title}}&nbsp;</td>
+          <br><br>
+          <td class="message">&nbsp;{{article.message}}&nbsp;</td>
+          <br><br>
+          <td class="date">Date de publication de l'article : {{article.date|date:'dd-MM-yyyy'}}</td><br>
+          <td class="author">Auteur : {{article.user.firstname}} </td>
+          <td class="contact">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact : {{article.user.email}} </td>
+          <p>---------------------------</p>
+          <br><br>
+        </ul>
+      </div>-->
+
+
     </header>
   </div>

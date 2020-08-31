@@ -21,7 +21,7 @@
       </ul>
       <br><br>
       </div>
-      <button type="button" class="btn btn-primary" routerLink="/mod">Accéder à la liste de vos articles</button>
+      <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')"  type="button" class="btn btn-primary" routerLink="/mod">Accéder à la liste de vos articles</button>
     </header>
  
   </div>
