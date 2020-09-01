@@ -12,17 +12,32 @@ export class FootballComponent implements OnInit {
   constructor(private sportService: SportService) { }
   errorMessage = '';
   articles: Article[];
+  size:number=1;
+  currentPage:number=0;
+  totalPages:number;
+  pages:Array<number>;
 
   ngOnInit() {
     this.activeNavBar();
-    this.sportService.getPublicFootballArticle().subscribe(
-      data => {
-        this.articles = data;
+    this.getArticles();
+  }
+
+  getArticles(){
+    this.sportService.getPublicFootballArticle(this.currentPage, this.size).subscribe(
+      data => {    
+        this.totalPages = data.totalPages;
+        this.pages = new Array<number>(this.totalPages);
+        this.articles = data.content;
       },
       err => {
         this.errorMessage = JSON.parse(err.error).message;
       }
     );
+  }
+
+  onPageArticle(i){
+    this.currentPage=i;
+    this.getArticles();
   }
 
   activeNavBar(){

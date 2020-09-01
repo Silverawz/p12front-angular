@@ -12,8 +12,8 @@ export class SportService {
 
   constructor(private http: HttpClient) { }
 
-  getPublicFootballArticle(): Observable<any> {
-    return this.http.get<Article[]>(API_URL + 'football/active');
+  getPublicFootballArticle(page:number, size:number): Observable<any> {
+    return this.http.get(API_URL + 'football/test?page='+page+'&size='+size);
   }
 
   getPublicVolleyballArticle(): Observable<any> {

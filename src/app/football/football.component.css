@@ -21,6 +21,18 @@
     font-size: 25px;
 }
 
+.nav-pills li{
+    color: rgb(38, 0, 255);
+    font-size:20px;
+    margin-left: 5px;
+}
+
+.glyphicon glyphicon-trash pull-right{
+    border:solid;
+    border-color:black;
+    border-radius: 2px;
+}
+
 @media screen and (max-width: 1000px) {
     .title {
       font-size: 34px;
