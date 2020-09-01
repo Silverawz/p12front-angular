@@ -10,15 +10,28 @@
           <tr>
             <th>Title</th>
             <th>Date</th>
+            <th>Description</th>
             <th>Modifier</th>
           </tr>
-          <tr *ngFor="let article of articles">
+          <tr *ngFor="let article of articles; let j=index">
             <td>{{article.title}}</td>
             <td>{{article.date|date:'dd-MM-yyyy'}}</td>
+            <td><a class="show-full-article" style="cursor: pointer">Afficher la page complète de l'article</a></td>
             <td button type="button" class="btn btn-warning">Modifier l'article</td>
           </tr>
         </div>
       </div>
+<br><br>
+             <!-- <div class="panel-body">-->
+              <ul class="nav nav-pills" *ngIf="pages">
+                <li *ngFor="let page of pages; let i=index" [ngClass]="i==currentPage?'active':''">
+                   <!-- <a class="glyphicon glyphicon-trash pull-right" style="cursor: pointer"(click)="onPageArticle(i)">{{i}}</a>-->
+                   <a style="cursor: pointer" (click)="onPageArticle(i)">{{i}}</a>
+                </li>
+              </ul>
+          
+              <p>currentPage = {{currentPage}}</p>
+              <p>Nbre articles par page = {{size}}</p>
      
 
      <!--

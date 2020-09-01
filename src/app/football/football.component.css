@@ -22,15 +22,13 @@
 }
 
 .nav-pills li{
-    color: rgb(38, 0, 255);
+    color: rgb(0, 0, 0);
+    background : rgb(243, 243, 156);
     font-size:20px;
     margin-left: 5px;
-}
-
-.glyphicon glyphicon-trash pull-right{
-    border:solid;
-    border-color:black;
-    border-radius: 2px;
+    border: 1px solid black;
+    border-radius: 30%;
+    padding: 5px;
 }
 
 @media screen and (max-width: 1000px) {

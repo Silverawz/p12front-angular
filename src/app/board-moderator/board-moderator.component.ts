@@ -11,25 +11,40 @@ export class BoardModeratorComponent implements OnInit {
   content = '';
   currentUser: any;
   articles: Article[];
+  size:number=10;
+  currentPage:number=0;
+  totalPages:number;
+  pages:Array<number>;
 
   constructor(private userService: UserService, private token: TokenStorageService) { }
 
   ngOnInit() {
     this.activeNavBar();
-    this.currentUser = this.token.getUser();
+    this.currentUser = this.token.getUser(); 
+    this.getArticles();  
+  }
+
+  getArticles(){
     if(!document.body.contains(document.getElementById("profile"))){
       this.content = 'You must be logged in to access this page.';
       document.getElementById('btn-profil').style.visibility = 'hidden';
     } else{
-      this.userService.getModeratorBoard().subscribe(
+      this.userService.getModeratorBoard(this.currentPage, this.size).subscribe(
         data => {
-          this.articles = data;
+          this.totalPages = data.totalPages;
+          this.pages = new Array<number>(this.totalPages);
+          this.articles = data.content;
         },
         err => {
           this.content = JSON.parse(err.error).message;
         }
       );
     }
+  }
+
+  onPageArticle(i){
+    this.currentPage=i;
+    this.getArticles();
   }
 
   activeNavBar(){

@@ -13,14 +13,14 @@ export class SportService {
   constructor(private http: HttpClient) { }
 
   getPublicFootballArticle(page:number, size:number): Observable<any> {
-    return this.http.get(API_URL + 'football/test?page='+page+'&size='+size);
+    return this.http.get(API_URL + 'football/active?page='+page+'&size='+size);
   }
 
-  getPublicVolleyballArticle(): Observable<any> {
-    return this.http.get<Article[]>(API_URL + 'volleyball/active');
+  getPublicVolleyballArticle(page:number, size:number): Observable<any> {
+    return this.http.get(API_URL + 'volleyball/active?page='+page+'&size='+size);
   }
 
-  getPublicBasketballArticle(): Observable<any> {
-    return this.http.get<Article[]>(API_URL + 'basketball/active');
+  getPublicBasketballArticle(page:number, size:number): Observable<any> {
+    return this.http.get(API_URL + 'basketball/active?page='+page+'&size='+size);
   }
 }

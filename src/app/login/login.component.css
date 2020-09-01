@@ -21,3 +21,7 @@
     color: black;
     font-family: sans-serif, Georgia, serif ;
 }
+
+.alert-success{
+    margin-bottom: 300px;
+}

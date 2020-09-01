@@ -23,5 +23,15 @@
               <br><br>
             </ul>
           </div>
+
+                 <!-- <div class="panel-body">-->
+        <ul class="nav nav-pills" *ngIf="pages">
+          <li *ngFor="let page of pages; let i=index" [ngClass]="i==currentPage?'active':''">
+             <!-- <a class="glyphicon glyphicon-trash pull-right" style="cursor: pointer"(click)="onPageArticle(i)">{{i}}</a>-->
+             <a style="cursor: pointer" (click)="onPageArticle(i)">{{i}}</a>
+          </li>
+        </ul>
+        <p>currentPage = {{currentPage}}</p>
+        <p>Nbre articles par page = {{size}}</p>
     </header>
   </div>
