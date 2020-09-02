@@ -23,4 +23,12 @@ export class SportService {
   getPublicBasketballArticle(page:number, size:number): Observable<any> {
     return this.http.get(API_URL + 'basketball/active?page='+page+'&size='+size);
   }
+
+  getPrivateArticleForUser(article_id:number): Observable<any>{
+    return this.http.get(API_URL + 'article?id='+article_id);
+  }
+
+  updateArticle(article:Article):Observable<any>{
+    return this.http.put('http://localhost:8080/api/sport/article', article);
+  }
 }

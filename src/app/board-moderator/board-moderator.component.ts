@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { TokenStorageService } from '../_services/token-storage.service';
 import { Article } from '../classes/article';
+import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
+import { SportService } from '../_services/sport.service';
 @Component({
   selector: 'app-board-moderator',
   templateUrl: './board-moderator.component.html',
@@ -11,17 +13,22 @@ export class BoardModeratorComponent implements OnInit {
   content = '';
   currentUser: any;
   articles: Article[];
-  size:number=10;
+  singleArticle: Article;
+  size:number=5;
   currentPage:number=0;
   totalPages:number;
   pages:Array<number>;
 
-  constructor(private userService: UserService, private token: TokenStorageService) { }
+  constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
   ngOnInit() {
     this.activeNavBar();
     this.currentUser = this.token.getUser(); 
     this.getArticles();  
+    this.hideFormChangeArticle();
+    if(document.body.contains(document.getElementById("btn-return-list-own-articles"))){
+      document.getElementById('btn-return-list-own-articles').style.visibility = 'hidden';
+    }
   }
 
   getArticles(){
@@ -42,9 +49,49 @@ export class BoardModeratorComponent implements OnInit {
     }
   }
 
+  onSubmit(){
+    this.sportService.updateArticle(this.singleArticle).subscribe(
+      data => {
+        this.singleArticle = data;
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    )
+  }
+
+  reloadPage(){
+    window.location.reload();
+  }
+
   onPageArticle(i){
     this.currentPage=i;
     this.getArticles();
+  }
+
+  changeArticle(id){
+    document.getElementById('panel panel-primary').style.display = "none";
+    document.getElementById('nav nav-pills').style.display = "none";
+    document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
+    this.showFormChangeArticle();
+    this.sportService.getPrivateArticleForUser(id).subscribe(
+      data => {
+        this.singleArticle = data;
+      },
+      err => {
+        this.content = JSON.parse(err.error).message;
+      }
+    )
+  }
+
+  hideFormChangeArticle(){
+    if(document.body.contains(document.getElementById("col-md-6")))
+    document.getElementById('col-md-6').style.display = "none";
+  }
+
+  showFormChangeArticle(){
+    if(document.body.contains(document.getElementById("col-md-6")))
+    document.getElementById('col-md-6').style.display = "initial";
   }
 
   activeNavBar(){

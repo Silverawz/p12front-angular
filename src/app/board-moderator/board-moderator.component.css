@@ -11,3 +11,55 @@
 .show-full-article{
     color: red;
 }
+
+
+#id_article{
+    margin-left:20px;
+    width:50px;
+}
+
+#title_article{
+    margin-left:20px;
+    width:400px;
+}
+
+#message_article{
+    margin-left:20px;
+    margin-right:20px;
+}
+
+#date_article{
+    margin-left:20px;
+    width:300px;
+}
+
+#activearticle{
+    margin-left:20px;
+    width:100px;
+}
+
+@media screen and (max-width: 765px) {
+    #title_article{
+        width: 300px;
+    }
+
+}
+
+#btn-change-article{
+    width:200px;
+    font-size: 20px;
+    color: black;
+    border: 2px solid black;
+    border-radius: 80%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    background: radial-gradient(circle, rgba(241,241,241,1) 24%, rgba(252,252,252,1) 35%, rgba(0,168,255,1) 42%, rgba(170,226,255,1) 42%, rgba(0,255,8,1) 48%, rgba(255,255,255,1) 54%, rgba(255,0,0,1) 61%, rgba(247,247,247,1) 71%, rgba(0,214,255,1) 72%, rgba(146,229,245,1) 79%, rgba(0,214,255,1) 86%);
+}
+
+
