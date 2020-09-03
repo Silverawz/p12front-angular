@@ -1,0 +1,11 @@
+.btn-align{
+    display : inline;
+    margin-left: 25px;
+    margin-right:50px;
+}
+
+@media screen and (max-width: 770px) {
+    .btn-align{
+        display:inline-block;
+    }
+}

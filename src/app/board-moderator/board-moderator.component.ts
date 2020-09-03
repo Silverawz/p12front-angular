@@ -18,10 +18,13 @@ export class BoardModeratorComponent implements OnInit {
   currentPage:number=0;
   totalPages:number;
   pages:Array<number>;
+  validateUpdated:boolean=false;
 
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
   ngOnInit() {
+    this.content = '';
+    this.validateUpdated = false;
     this.activeNavBar();
     this.currentUser = this.token.getUser(); 
     this.getArticles();  
@@ -52,9 +55,11 @@ export class BoardModeratorComponent implements OnInit {
   onSubmit(){
     this.sportService.updateArticle(this.singleArticle).subscribe(
       data => {
-        this.singleArticle = data;
+        this.validateUpdated = true;
+        this.hideFormChangeArticle();
       },
       err => {
+        this.content = 'error_message_failed_to_update_article';
         this.content = JSON.parse(err.error).message;
       }
     )
@@ -70,6 +75,7 @@ export class BoardModeratorComponent implements OnInit {
   }
 
   changeArticle(id){
+    this.validateUpdated = false;
     document.getElementById('panel panel-primary').style.display = "none";
     document.getElementById('nav nav-pills').style.display = "none";
     document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
@@ -79,7 +85,7 @@ export class BoardModeratorComponent implements OnInit {
         this.singleArticle = data;
       },
       err => {
-        this.content = JSON.parse(err.error).message;
+        this.content = err.error.message;
       }
     )
   }

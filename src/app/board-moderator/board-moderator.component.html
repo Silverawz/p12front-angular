@@ -6,21 +6,21 @@
       <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" 
       type="button" class="btn btn-primary" id="btn-profil" routerLink="/profile">Accéder à votre profil</button>
 
+      <div *ngIf="validateUpdated"  class="alert alert-success">L'article avec l'id {{singleArticle.id_article}} a bien été mis à jour.</div>
+
       <button type="button" class="btn btn-danger" id="btn-return-list-own-articles" (click)="reloadPage()">Accéder à la liste de vos articles</button>
     </div>
       <div class="panel panel-primary" id="panel panel-primary">
         <div class="panel-heading">Liste de vos articles</div>
         <div class="panel-body">
           <tr>
-            <th>Title</th>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Modifier</th>
+            <th>Titre de l'article</th>
+            <th>Date de parution</th>
+            <th>Modifier un article</th>
           </tr>
           <tr *ngFor="let article of articles; let j=index">
-            <td>{{article.title}}</td>
+            <td><a class="article-title" style="cursor: pointer">{{article.title}}</a></td>
             <td>{{article.date|date:'dd-MM-yyyy'}}</td>
-            <td><a class="show-full-article" style="cursor: pointer">Afficher la page complète de l'article</a></td>
             <td button type="button" class="btn btn-warning" (click)="changeArticle(article.id_article)">Modifier l'article</td>
           </tr>
         </div>
@@ -30,7 +30,8 @@
               <ul class="nav nav-pills" id="nav nav-pills" *ngIf="pages">
                 <li *ngFor="let page of pages; let i=index"><!-- [ngClass]="i==currentPage?'active':''"         -->
                    <!-- <a class="glyphicon glyphicon-trash pull-right" style="cursor: pointer"(click)="onPageArticle(i)">{{i}}</a>-->
-                   <a style="cursor: pointer" (click)="onPageArticle(i)">{{i}}</a>
+                   <a *ngIf="i!=currentPage" style="cursor: pointer" (click)="onPageArticle(i)">{{i}}</a>
+                   <a *ngIf="i==currentPage" style="cursor: pointer" (click)="onPageArticle(i)"><strong>{{i}}</strong></a>
                 </li>
               </ul>
         
@@ -39,39 +40,33 @@
                 <h2>Page de modification d'un article</h2>
                 <div class="card card-container">
 
-                  <div class="form-group" *ngIf="singleArticle">
-                    <label for="id">Article id (Ne peut pas être modifié)</label>
+                  <div class="form-group" id="id_article" *ngIf="singleArticle">
+                    <label for="id">Article id</label>
                   <input type="text" class="form-control" name="id" id="id_article" [(ngModel)]="singleArticle.id_article" [ngModelOptions]="{standalone: true}" readonly="readonly" required/>
                 </div>
 
                   <div class="form-group" id="title_article" *ngIf="singleArticle">
-                    <label for="title">Title (Le titre de l'article)</label>
+                    <label for="title">Title</label>
                   <input type="text-box" class="form-control" name="title" [(ngModel)]="singleArticle.title" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="70"/>
                   </div>
 
                   <div class="form-group" id="message_article" name="message" *ngIf="singleArticle">
-                    <label for="message">Message (Le contenue de l'article)</label>
+                    <label for="message">Message</label>
                   <textarea class="form-control" rows="15" [(ngModel)]="singleArticle.message" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="1000"></textarea>
                   </div>
 
                   <div class="form-group" id="date_article" name="date" *ngIf="singleArticle">
-                    <label for="date">Date de publication (Ne peut pas être modifiée)</label>
+                    <label for="date">Date de publication</label>
                   <input type="text" class="form-control" [(ngModel)]="singleArticle.date" readonly="readonly" [ngModelOptions]="{standalone: true}" required/>
                   </div>
 
                   <div class="form-group" id="activearticle" name="active" *ngIf="singleArticle">
-                    <label for="active">Activer/Desactiver cet article (Un article désactivé n'apparaît pas dans la liste des publications)</label>
+                    <label for="active">Activer/Desactiver cet article</label>
                   <input type="text" class="form-control" [(ngModel)]="singleArticle.active" [ngModelOptions]="{standalone: true}" required pattern="True|False"/>
                   </div>
                     <button type="button" class="btn btn-warning" id="btn-change-article" (click)="onSubmit()">Valider</button>
-                  </div>
-    
+                  </div>  
               </div>
-
-              <div id="Toremove">
-              <p>currentPage = {{currentPage}}</p>
-              <p>Nbre articles par page = {{size}}</p>
-            </div>
 
      <!--
       <div class="content">
