@@ -17,11 +17,16 @@
             <th>Titre de l'article</th>
             <th>Date de parution</th>
             <th>Modifier un article</th>
+            <th>Categories</th>
           </tr>
           <tr *ngFor="let article of articles; let j=index">
             <td><a class="article-title" style="cursor: pointer">{{article.title}}</a></td>
             <td>{{article.date|date:'dd-MM-yyyy'}}</td>
-            <td button type="button" class="btn btn-warning" (click)="changeArticle(article.id_article)">Modifier l'article</td>
+           <!--<td *ngIf="article.categories">{{article.categories[0].description}}</td>--> 
+           <td button type="button" class="btn btn-warning" (click)="changeArticle(article.id_article)">Modifier l'article</td>
+           <td>
+           <table> <td *ngFor="let category of article.categories">{{category.description}}</td> </table>
+          </td>
           </tr>
         </div>
       </div>
