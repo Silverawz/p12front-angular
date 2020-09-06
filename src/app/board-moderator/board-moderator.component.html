@@ -10,6 +10,32 @@
 
       <button type="button" class="btn btn-danger" id="btn-return-list-own-articles" (click)="reloadPage()">Accéder à la liste de vos articles</button>
     </div>
+
+
+
+<div id="title_list"><h1>Liste de vos articles (Trié par date): </h1></div><br><br>
+    <div class="content" id="content_articles">
+      <ul *ngFor="let article of articles; let j=index">
+        <td><strong>Catégorie : </strong>
+          <table> <td *ngFor="let category of article.categories">{{category.description}}...</td> </table>
+         </td><br>
+        <td class="title">&nbsp;{{article.title}}&nbsp;</td>
+        <br><br>
+        <td class="message">&nbsp;{{article.message}}&nbsp;</td>
+        <br><br>
+        <td class="date">Date de publication de l'article : {{article.date|date:'dd-MM-yyyy'}}</td><br>
+        <td class="author">Auteur : {{article.user.firstname}} </td>
+        <td class="contact">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Contact : {{article.user.email}} </td><br>
+       <!--<td button type="button" class="btn btn-warning" (click)="changeArticle(article.id_article)">Modifier l'article</td>--> 
+       <td>
+        <button type="button" class="btn btn-warning" id="btn-change-article" (click)="changeArticle(article.id_article)">Modifier l'article</button>
+      </td>
+        <p>---------------------------</p>
+        <br><br>
+      </ul>
+    </div>
+
+<!--
       <div class="panel panel-primary" id="panel panel-primary">
         <div class="panel-heading">Liste de vos articles</div>
         <div class="panel-body">
@@ -22,7 +48,6 @@
           <tr *ngFor="let article of articles; let j=index">
             <td><a class="article-title" style="cursor: pointer">{{article.title}}</a></td>
             <td>{{article.date|date:'dd-MM-yyyy'}}</td>
-           <!--<td *ngIf="article.categories">{{article.categories[0].description}}</td>--> 
            <td button type="button" class="btn btn-warning" (click)="changeArticle(article.id_article)">Modifier l'article</td>
            <td>
            <table> <td *ngFor="let category of article.categories">{{category.description}}</td> </table>
@@ -30,9 +55,11 @@
           </tr>
         </div>
       </div>
+-->
+
 <br><br>
              <!-- <div class="panel-body">-->
-              <ul class="nav nav-pills" id="nav nav-pills" *ngIf="pages">
+              <ul class="nav nav-pills" id="page_number" *ngIf="pages">
                 <li *ngFor="let page of pages; let i=index"><!-- [ngClass]="i==currentPage?'active':''"         -->
                    <!-- <a class="glyphicon glyphicon-trash pull-right" style="cursor: pointer"(click)="onPageArticle(i)">{{i}}</a>-->
                    <a *ngIf="i!=currentPage" style="cursor: pointer" (click)="onPageArticle(i)">{{i}}</a>
@@ -48,6 +75,28 @@
                   <div class="form-group" id="id_article" *ngIf="singleArticle">
                     <label for="id">Article id</label>
                   <input type="text" class="form-control" name="id" id="id_article" [(ngModel)]="singleArticle.id_article" [ngModelOptions]="{standalone: true}" readonly="readonly" required/>
+                </div>
+
+
+
+                <div class="form-group" id="categories_article" *ngIf="singleArticle && categoriesName">
+                  <label for="categories">Catégorie(s)</label>&nbsp;&nbsp;
+                  <!--*ngFor="let category of singleArticle.categories" -->
+                  <!--<input type="text-box"class="form-control" name="categories" [(ngModel)]="categoriesName"        
+                  [ngModelOptions]="{standalone: true}" required/>-->
+                  <div style="display:inline">
+                    <button type="button" id="activated" (click)="removeCategory(categoriesName[0])" *ngIf="validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
+                    <button type="button" id="desactivated" (click)="addCategory(categoriesName[0])" *ngIf="!validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
+                    
+                    &nbsp;&nbsp;
+                   
+                    <button type="activated" id="activated" (click)="removeCategory(categoriesName[1])" *ngIf="validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
+                    <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[1])" *ngIf="!validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
+                    &nbsp;&nbsp;
+                    <button type="activated" id="activated" (click)="removeCategory(categoriesName[2])" *ngIf="validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button>
+                    <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[2])" *ngIf="!validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button> 
+            
+                  </div>
                 </div>
 
                   <div class="form-group" id="title_article" *ngIf="singleArticle">

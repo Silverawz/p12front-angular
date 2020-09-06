@@ -4,6 +4,7 @@ import { TokenStorageService } from '../_services/token-storage.service';
 import { Article } from '../classes/article';
 import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 import { SportService } from '../_services/sport.service';
+import { Categories } from '../classes/categories';
 @Component({
   selector: 'app-board-moderator',
   templateUrl: './board-moderator.component.html',
@@ -14,11 +15,13 @@ export class BoardModeratorComponent implements OnInit {
   currentUser: any;
   articles: Article[];
   singleArticle: Article;
-  size:number=5;
+  size:number=2;
   currentPage:number=0;
   totalPages:number;
   pages:Array<number>;
   validateUpdated:boolean=false;
+  categoriesName: Categories[];
+  categoriesFromSingleArticle: Categories[];
 
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
@@ -76,8 +79,9 @@ export class BoardModeratorComponent implements OnInit {
 
   changeArticle(id){
     this.validateUpdated = false;
-    document.getElementById('panel panel-primary').style.display = "none";
-    document.getElementById('nav nav-pills').style.display = "none";
+    document.getElementById('content_articles').style.display = "none";
+    document.getElementById('title_list').style.display = "none";
+    document.getElementById('page_number').style.display = "none";
     document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
     this.showFormChangeArticle();
     this.sportService.getPrivateArticleForUser(id).subscribe(
@@ -88,7 +92,52 @@ export class BoardModeratorComponent implements OnInit {
         this.content = err.error.message;
       }
     )
+    // recupere la liste des categories via API
+    this.sportService.getAllCategoriesName().subscribe(
+      data => {
+        this.categoriesName = data;
+      },
+      err => {
+        this.content = err.error.message;
+      }
+    )
   }
+
+  validateCategory(Categories){
+    for(let j =0; j < this.singleArticle.categories.length; j++){
+      if(this.singleArticle.categories[j].description == Categories.description){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  removeCategory(Categories){
+    A : for(let j =0; j < this.singleArticle.categories.length; j++){
+      if(this.singleArticle.categories[j].description == Categories.description){
+        this.singleArticle.categories =  this.singleArticle.categories.filter(obj => obj !== this.singleArticle.categories[j]);
+        break A;
+      }
+    }
+  }
+
+  addCategory(Categories){
+    var lengthArray = this.singleArticle.categories.length;
+    A : for(let j =0; j < lengthArray; j++){
+      if(this.singleArticle.categories[j].description == Categories.description){
+        break A;
+      } else if (j = lengthArray - 1){
+        this.singleArticle.categories.push(Categories);
+      }
+    }
+    if(lengthArray == 0){
+      this.singleArticle.categories.push(Categories);
+    }
+    if(lengthArray == 1 && this.singleArticle.categories[0].description != Categories.description){
+      this.singleArticle.categories.push(Categories);
+    }
+  }
+
 
   hideFormChangeArticle(){
     if(document.body.contains(document.getElementById("col-md-6")))

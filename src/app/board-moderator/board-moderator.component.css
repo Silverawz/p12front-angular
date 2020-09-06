@@ -12,10 +12,25 @@
     color: red;
 }
 
+.title{
+    color: black;
+    font-family: cursive,sans-serif, serif;
+    font-size: 40px;
+    background: white;
+    border-radius: 15px;
+    border: 2px solid black;
+    /* background-color: rgb(255, 0, 0); 
+    */
+}
 
 #id_article{
     margin-left:20px;
     width:50px;
+}
+
+#categories_article{
+    margin-left:20px;
+    margin-right:20px;
 }
 
 #title_article{
@@ -38,10 +53,34 @@
     width:100px;
 }
 
+#activated{
+    background-color: yellow;
+    border-radius: 40%;
+    border-color : black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+#desactivated{
+    background-color: #ffffff;
+    border-radius: 40%;
+    border-color : black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+
+
+
+
+
 @media screen and (max-width: 765px) {
     #title_article{
         width: 300px;
     }
+    .title {
+        font-size: 20px;
+      }
 }
 
 

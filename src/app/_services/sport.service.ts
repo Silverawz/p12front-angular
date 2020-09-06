@@ -29,6 +29,10 @@ export class SportService {
   }
 
   updateArticle(article:Article):Observable<any>{
-    return this.http.put('http://localhost:8080/api/sport/article', article);
+    return this.http.put(API_URL+'article', article);
+  }
+
+  getAllCategoriesName():Observable<any>{
+    return this.http.get(API_URL+'categories/all');
   }
 }
