@@ -70,6 +70,20 @@
 }
 
 
+#change_article_active{
+    background-color: yellow;
+    border-color : black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+#change_article_inactive{
+    background-color: white;
+    border-color : black;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
 
 
 

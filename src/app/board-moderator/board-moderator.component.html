@@ -115,10 +115,13 @@
                   </div>
 
                   <div class="form-group" id="activearticle" name="active" *ngIf="singleArticle">
-                    <label for="active">Activer/Desactiver cet article</label>
-                  <input type="text" class="form-control" [(ngModel)]="singleArticle.active" [ngModelOptions]="{standalone: true}" required pattern="True|False"/>
+                    <label for="active">Activer/Desactiver cet article (Un article désactivé n'apparaît pas sur le dashboard)</label>
+                      <button type="button" id="change_article_active" (click)="change_article_active()" *ngIf="isActive()">Active</button>
+                      <button type="button" id="change_article_inactive" (click)="change_article_active()" *ngIf="!isActive()">Inactive</button>
                   </div>
-                    <button type="button" class="btn btn-warning" id="btn-change-article" (click)="onSubmit()">Valider</button>
+
+
+                    <button type="button" class="btn btn-warning" id="btn-change-article" (click)="updateArticle()">Valider</button>
                   </div>  
               </div>
 

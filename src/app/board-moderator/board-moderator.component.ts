@@ -22,6 +22,7 @@ export class BoardModeratorComponent implements OnInit {
   validateUpdated:boolean=false;
   categoriesName: Categories[];
   categoriesFromSingleArticle: Categories[];
+  articleIsActive:boolean;
 
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
@@ -55,7 +56,8 @@ export class BoardModeratorComponent implements OnInit {
     }
   }
 
-  onSubmit(){
+  updateArticle(){
+    this.singleArticle.active = this.articleIsActive;
     this.sportService.updateArticle(this.singleArticle).subscribe(
       data => {
         this.validateUpdated = true;
@@ -87,6 +89,7 @@ export class BoardModeratorComponent implements OnInit {
     this.sportService.getPrivateArticleForUser(id).subscribe(
       data => {
         this.singleArticle = data;
+        this.articleIsActive = this.singleArticle.active;
       },
       err => {
         this.content = err.error.message;
@@ -138,6 +141,20 @@ export class BoardModeratorComponent implements OnInit {
     }
   }
 
+  isActive(){
+    if(this.articleIsActive){
+      return true;
+    }
+      return false;  
+  }
+
+  change_article_active(){
+    if(this.articleIsActive){
+      this.articleIsActive = false;
+    } else {
+      this.articleIsActive = true;
+    }
+  }
 
   hideFormChangeArticle(){
     if(document.body.contains(document.getElementById("col-md-6")))
