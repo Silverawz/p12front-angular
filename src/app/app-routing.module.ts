@@ -11,6 +11,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { FootballComponent } from './football/football.component';
 import { BasketballComponent } from './basketball/basketball.component';
 import { VolleyballComponent } from './volleyball/volleyball.component';
+import { CreatearticleComponent } from './createarticle/createarticle.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +24,9 @@ const routes: Routes = [
   { path: 'football', component: FootballComponent },
   { path: 'basketball', component: BasketballComponent },
   { path: 'volleyball', component: VolleyballComponent },
+  { path: 'createarticle', component: CreatearticleComponent },
+
+  
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

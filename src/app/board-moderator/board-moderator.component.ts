@@ -5,6 +5,8 @@ import { Article } from '../classes/article';
 import { renderFlagCheckIfStmt } from '@angular/compiler/src/render3/view/template';
 import { SportService } from '../_services/sport.service';
 import { Categories } from '../classes/categories';
+
+
 @Component({
   selector: 'app-board-moderator',
   templateUrl: './board-moderator.component.html',
@@ -23,6 +25,8 @@ export class BoardModeratorComponent implements OnInit {
   categoriesName: Categories[];
   categoriesFromSingleArticle: Categories[];
   articleIsActive:boolean;
+  messageInputError:boolean=false;
+  titleInputError:boolean=false;
 
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
@@ -58,17 +62,46 @@ export class BoardModeratorComponent implements OnInit {
 
   updateArticle(){
     this.singleArticle.active = this.articleIsActive;
-    this.sportService.updateArticle(this.singleArticle).subscribe(
-      data => {
-        this.validateUpdated = true;
-        this.hideFormChangeArticle();
-      },
-      err => {
-        this.content = 'error_message_failed_to_update_article';
-        this.content = JSON.parse(err.error).message;
-      }
-    )
+    this.content = ''; this.messageInputError=false; this.titleInputError=false;
+    let validationOfUpdate : boolean  = true;
+    if(!this.checkSizeOfTextArticle(5, 1000, this.singleArticle.message)) {
+      this.messageInputError=true;
+      this.content = 'error_message_failed_to_update_article';
+      validationOfUpdate=false;
+    }
+    if(!this.checkSizeOfTextArticle(5, 70, this.singleArticle.title)){
+      this.titleInputError=true;
+      this.content = 'error_message_failed_to_update_article';
+      validationOfUpdate=false;
+    }
+    if(this.singleArticle.categories.length < 1){
+      this.content = 'error_message_failed_to_update_article';
+      validationOfUpdate=false;
+    }
+    if(validationOfUpdate){
+      this.sportService.updateArticle(this.singleArticle).subscribe(
+        data => {
+          this.validateUpdated = true;
+          this.hideFormChangeArticle();
+        },
+        err => {
+          this.content = 'error_message_failed_to_update_article';
+          this.content = JSON.parse(err.error).message;
+        }
+      )
+    }
   }
+
+  checkSizeOfTextArticle(minSize:number, maxSize:number, subject:String){
+    if(subject == null){
+      return false;
+    }else if(subject.length < minSize || subject.length > maxSize){
+      return false;
+    } else
+    return true;
+  }
+
+
 
   reloadPage(){
     window.location.reload();
@@ -84,6 +117,7 @@ export class BoardModeratorComponent implements OnInit {
     document.getElementById('content_articles').style.display = "none";
     document.getElementById('title_list').style.display = "none";
     document.getElementById('page_number').style.display = "none";
+    document.getElementById('create_article_btn').style.display = "none";
     document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
     this.showFormChangeArticle();
     this.sportService.getPrivateArticleForUser(id).subscribe(
@@ -107,12 +141,12 @@ export class BoardModeratorComponent implements OnInit {
   }
 
   validateCategory(Categories){
-    for(let j =0; j < this.singleArticle.categories.length; j++){
-      if(this.singleArticle.categories[j].description == Categories.description){
-        return true;
+      for(let j =0; j < this.singleArticle.categories.length; j++){
+        if(this.singleArticle.categories[j].description == Categories.description){
+          return true;
+        }
       }
-    }
-    return false;
+      return false;   
   }
 
   removeCategory(Categories){
@@ -165,6 +199,7 @@ export class BoardModeratorComponent implements OnInit {
     if(document.body.contains(document.getElementById("col-md-6")))
     document.getElementById('col-md-6').style.display = "initial";
   }
+
 
   activeNavBar(){
     document.getElementById("home").className = "unactive";

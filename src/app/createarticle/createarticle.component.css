@@ -1,28 +1,3 @@
-.nav-pills li{
-    color: rgb(0, 0, 0);
-    background : rgb(243, 243, 156);
-    font-size:20px;
-    margin-left: 5px;
-    border: 1px solid black;
-    border-radius: 30%;
-    padding: 5px;
-}
-
-.article-title{
-    color: red;
-}
-
-.title{
-    color: black;
-    font-family: cursive,sans-serif, serif;
-    font-size: 40px;
-    background: white;
-    border-radius: 15px;
-    border: 2px solid black;
-    /* background-color: rgb(255, 0, 0); 
-    */
-}
-
 #id_article{
     margin-left:20px;
     width:50px;
@@ -70,7 +45,6 @@
     text-align: center;
 }
 
-
 #change_article_active{
     background-color: yellow;
     border-color : black;
@@ -84,20 +58,6 @@
     color: rgb(0, 0, 0);
     text-align: center;
 }
-
-
-
-
-
-@media screen and (max-width: 765px) {
-    #title_article{
-        width: 300px;
-    }
-    .title {
-        font-size: 20px;
-      }
-}
-
 
 #btn-change-article{
     width:200px;
@@ -115,4 +75,3 @@
     margin-bottom: 40px;
     background: radial-gradient(circle, rgba(241,241,241,1) 24%, rgba(252,252,252,1) 35%, rgba(0,168,255,1) 42%, rgba(170,226,255,1) 42%, rgba(0,255,8,1) 48%, rgba(255,255,255,1) 54%, rgba(255,0,0,1) 61%, rgba(247,247,247,1) 71%, rgba(0,214,255,1) 72%, rgba(146,229,245,1) 79%, rgba(0,214,255,1) 86%);
 }
-

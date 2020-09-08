@@ -17,6 +17,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { FootballComponent } from './football/football.component';
 import { BasketballComponent } from './basketball/basketball.component';
 import { VolleyballComponent } from './volleyball/volleyball.component';
+import { CreatearticleComponent } from './createarticle/createarticle.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { VolleyballComponent } from './volleyball/volleyball.component';
     FootballComponent,
     BasketballComponent,
     VolleyballComponent,
+    CreatearticleComponent,
   ],
   imports: [
     BrowserModule,

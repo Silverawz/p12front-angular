@@ -23,7 +23,6 @@
       </div>
       <div class="btn-align">
       <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')"  type="button" class="btn btn-primary" style="margin-right:50px" routerLink="/mod">Accéder à la liste de vos articles</button>
-      <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')"  type="button" class="btn btn-warning" routerLink="/mod">Créer un nouvel article</button>
       </div>
     </header>
  
