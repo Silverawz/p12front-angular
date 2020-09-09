@@ -1,14 +1,13 @@
 <div class="container">
     <header class="jumbotron">
+      <img src="assets/img/basketball_img.jpg" id="img">
         <button type="button" id="btn-custom1">Accéder au forum Basketball</button>
-      <br><br>
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h2>Liste des articles pour la catégorie : Basketball</h2>
         </div>
         <br><br>
       </div>
-       <!-- <div class="panel-body">-->
 
           <div class="content">
             <ul *ngFor="let article of articles">
@@ -23,7 +22,6 @@
               <br><br>
             </ul>
           </div>
-
                  <!-- <div class="panel-body">-->
         <ul class="nav nav-pills" *ngIf="pages">
           <li *ngFor="let page of pages; let i=index">

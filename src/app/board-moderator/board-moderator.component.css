@@ -122,6 +122,7 @@
     border-color : black(190, 10, 10);
     color: rgb(0, 0, 0);
     text-align: center;
+    margin-left: 15px;
 }
 
 #btn-change-article{

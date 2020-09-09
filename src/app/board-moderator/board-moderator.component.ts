@@ -27,18 +27,19 @@ export class BoardModeratorComponent implements OnInit {
   articleIsActive:boolean;
   messageInputError:boolean=false;
   titleInputError:boolean=false;
+  disableBtn:boolean;
 
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
   ngOnInit() {
-    this.content = '';
-    this.validateUpdated = false;
-    this.activeNavBar();
-    this.currentUser = this.token.getUser(); 
-    this.getArticles();  
-    this.hideFormChangeArticle();
-    if(document.body.contains(document.getElementById("btn-return-list-own-articles"))){
-      document.getElementById('btn-return-list-own-articles').style.visibility = 'hidden';
+    this.currentUser = this.token.getUser();  
+    if(this.currentUser != null){
+      this.content = '';
+      this.validateUpdated = false;
+      this.activeNavBar();
+      this.getArticles();  
+      this.hideFormChangeArticle();
+      this.disableBtn=false;
     }
   }
 
@@ -118,7 +119,7 @@ export class BoardModeratorComponent implements OnInit {
     document.getElementById('title_list').style.display = "none";
     document.getElementById('page_number').style.display = "none";
     document.getElementById('btn-custom2').style.display = "none";
-    document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
+    this.disableBtn = true;
     this.showFormChangeArticle();
     this.sportService.getPrivateArticleForUser(id).subscribe(
       data => {

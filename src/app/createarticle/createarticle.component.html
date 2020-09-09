@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentUser; else loggedOut">
     <header class="jumbotron">
 
 
@@ -58,3 +58,10 @@
 
     </header>
 </div>
+
+<ng-template #loggedOut>
+  <header class="jumbotron">
+    Forbidden. Please login.
+  </header>
+
+</ng-template>

@@ -25,14 +25,16 @@ export class CreatearticleComponent implements OnInit {
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
   ngOnInit(): void {
-    this.content = '';
-    this.validateCreate = false;
-    this.activeNavBar();
-    this.getCategoriesName();
     this.currentUser = this.token.getUser();
-    this.articleIsActive = true;
-    this.categories.push(new Categories(1, 'placeholderToRemove'));
-    this.singleArticle = new Article(null, null, null, null, true, null, this.categories);
+    if(this.currentUser  != null){
+      this.content = '';
+      this.validateCreate = false;
+      this.activeNavBar();
+      this.getCategoriesName();
+      this.articleIsActive = true;
+      this.categories.push(new Categories(1, 'placeholderToRemove'));
+      this.singleArticle = new Article(null, null, null, null, true, null, this.categories);
+    }
   }
 
   getCategoriesName(){
