@@ -32,6 +32,10 @@ export class SportService {
     return this.http.put(API_URL+'article', article);
   }
 
+  createArticle(article:Article):Observable<any>{
+    return this.http.post(API_URL+'article', article);
+  }
+
   getAllCategoriesName():Observable<any>{
     return this.http.get(API_URL+'categories/all');
   }

@@ -4,13 +4,13 @@
       <div display="inline">
 
       <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" 
-      type="button" class="btn btn-primary" id="btn-profil" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
+      type="button" id="btn-custom1" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
 
-      <button type="button" id="create_article_btn" *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" 
-      class="btn btn-warning" routerLink="/createarticle">Créer un nouvel article </button>
+      <button type="button" id="btn-custom2" *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" 
+      routerLink="/createarticle">Créer un nouvel article </button>
 
       <div *ngIf="validateUpdated"  class="alert alert-success">L'article a bien été mis à jour.</div>
-      <button type="button" class="btn btn-danger" id="btn-return-list-own-articles" (click)="reloadPage()">Accéder à la liste de vos articles</button>
+      <button type="button" id="btn-return-list-own-articles" (click)="reloadPage()">Accéder à la liste de vos articles</button>
     </div>
 
 

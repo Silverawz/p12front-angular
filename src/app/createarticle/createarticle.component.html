@@ -4,9 +4,9 @@
 
 <div display="inline">
 
-    <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" type="button" class="btn btn-primary" id="btn-profil" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
+  <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" type="button" id="btn-custom1" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
     <div *ngIf="validateCreate"  class="alert alert-success">L'article a bien été crée.</div>
-    <button type="button" class="btn btn-danger" id="btn-return-list-own-articles" routerLink="/mod">Accéder à la liste de vos articles</button>
+    <button type="button" id="btn-return-list-own-articles" routerLink="/mod">Accéder à la liste de vos articles</button>
   </div><br>
 <!-- creation d'un article -->
               <div class="col-md-12" id="create_article" center>

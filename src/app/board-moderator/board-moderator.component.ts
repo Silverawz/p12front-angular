@@ -117,7 +117,7 @@ export class BoardModeratorComponent implements OnInit {
     document.getElementById('content_articles').style.display = "none";
     document.getElementById('title_list').style.display = "none";
     document.getElementById('page_number').style.display = "none";
-    document.getElementById('create_article_btn').style.display = "none";
+    document.getElementById('btn-custom2').style.display = "none";
     document.getElementById('btn-return-list-own-articles').style.visibility = 'visible';
     this.showFormChangeArticle();
     this.sportService.getPrivateArticleForUser(id).subscribe(

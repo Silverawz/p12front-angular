@@ -121,14 +121,24 @@ export class CreatearticleComponent implements OnInit {
       validationOfUpdate=false;
     }
     if(validationOfUpdate){
-     // this.singleArticle.categories = this.singleArticle.categories.filter(obj => obj !== this.singleArticle.categories[0]);
-      console.log('validé!')
       this.singleArticle.categories.forEach(element => {
-        console.log(element.description);
+        if(element.description == 'placeholderToRemove'){
+          this.singleArticle.categories = this.singleArticle.categories.filter(obj => obj !== element);
+        }
       });
-      this.validateCreate = true;
-      this.hideCreateArticleForm();
+      this.sportService.createArticle(this.singleArticle).subscribe(
+        data => {
+          this.validateCreate = true;
+          this.hideCreateArticleForm();
+        },
+        err => {
+          this.singleArticle.categories.push(new Categories(1, 'placeholderToRemove'));
+          this.content = 'error_message_failed_to_update_article';
+          this.content = err.error.message;
+        }
+      )
     }
+
   }
 
   hideCreateArticleForm(){

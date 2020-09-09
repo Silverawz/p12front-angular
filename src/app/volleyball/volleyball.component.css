@@ -54,3 +54,14 @@
         font-size: 18px;
     }
   }
+
+  
+  #btn-custom1 {
+    background: radial-gradient(circle, rgba(241,241,241,1) 24%, rgba(252,252,252,1) 35%, rgba(0,168,255,1) 42%, rgba(170,226,255,1) 42%, rgba(0,255,8,1) 48%, rgba(255,255,255,1) 54%, rgba(255,0,0,1) 61%, rgba(247,247,247,1) 71%, rgba(0,214,255,1) 72%, rgba(146,229,245,1) 79%, rgba(0,214,255,1) 86%);
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-color : black(190, 10, 10);
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
