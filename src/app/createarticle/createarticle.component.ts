@@ -38,7 +38,6 @@ export class CreatearticleComponent implements OnInit {
   }
 
   getCategoriesName(){
-    // recupere la liste des categories via API
     this.sportService.getAllCategoriesName().subscribe(
       data => {
         this.categoriesName = data;

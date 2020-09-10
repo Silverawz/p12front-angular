@@ -28,7 +28,7 @@ export class BoardModeratorComponent implements OnInit {
   messageInputError:boolean=false;
   titleInputError:boolean=false;
   disableBtn:boolean;
-
+  hideChangeFormArticle:boolean;
   constructor(private userService: UserService, private token: TokenStorageService, private sportService: SportService) { }
 
   ngOnInit() {
@@ -130,7 +130,6 @@ export class BoardModeratorComponent implements OnInit {
         this.content = err.error.message;
       }
     )
-    // recupere la liste des categories via API
     this.sportService.getAllCategoriesName().subscribe(
       data => {
         this.categoriesName = data;
@@ -192,13 +191,11 @@ export class BoardModeratorComponent implements OnInit {
   }
 
   hideFormChangeArticle(){
-    if(document.body.contains(document.getElementById("col-md-6")))
-    document.getElementById('col-md-6').style.display = "none";
+    this.hideChangeFormArticle = true;
   }
 
   showFormChangeArticle(){
-    if(document.body.contains(document.getElementById("col-md-6")))
-    document.getElementById('col-md-6').style.display = "initial";
+    this.hideChangeFormArticle = false;
   }
 
 

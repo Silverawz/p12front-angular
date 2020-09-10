@@ -5,8 +5,7 @@
     background: white;
     border-radius: 15px;
     border: 2px solid black;
-    /* background-color: rgb(255, 0, 0); 
-    */
+    background-color: rgb(255, 255, 255);
 }
 
 .message{
@@ -15,7 +14,7 @@
     font-size: 20px;
 }
 
-.date, .author, .contact{
+.author, .contact{
     color: black;
     font-family: cursive,sans-serif, serif;
     font-size: 25px;
@@ -38,8 +37,11 @@
     .message{
         font-size: 18px;  
     }
-    .date, .author, .contact{
+    .author, .contact{
         font-size: 23px;
+    }
+    .date{
+        font-size: 13px; 
     }
   }
 
@@ -50,8 +52,11 @@
     .message{
         font-size: 14px;  
     }
-    .date, .author, .contact{
+    .author, .contact{
         font-size: 18px;
+    }
+    .date{
+        font-size: 11px; 
     }
   }
 
@@ -67,13 +72,6 @@
     text-shadow: 1px 1px 2px rgb(233, 167, 129), 0 0 1em rgb(5, 194, 201), 0 0 0.2em rgb(206, 25, 131);
 }
 
-h2{
-    float:center; 
-    font-family:Garamond;
-    margin-left:10px;
-    font-weight:bold;
-}
-
 #img{
     width: 100%;
     height: 400px;
@@ -82,3 +80,22 @@ h2{
     border-radius: 30px;
 }
 
+.jumbotron{
+    background: linear-gradient(0deg, rgba(217,214,214,1) 38%, rgba(214,214,214,1) 76%, rgba(203,237,184,1) 87%, rgba(158,255,166,1) 100%, rgba(255,255,255,1) 100%);
+}
+
+h2{
+    float:center; 
+    font-family:Garamond;
+    margin-left:50px;
+    font-weight:bold;
+    color: black;
+}
+
+.date{
+    font-size: 16px; 
+}
+
+strong{
+    color:black;
+}

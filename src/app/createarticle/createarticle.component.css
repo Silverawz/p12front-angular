@@ -95,3 +95,9 @@
     color: rgb(0, 0, 0);
     text-align: center;
 }
+
+@media screen and (max-width: 765px) {
+    #title_article{
+        width: 300px;
+    }
+}

@@ -25,12 +25,9 @@
       <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" id="btn-list-article" type="button" routerLink="/mod">Accéder à la liste de vos articles</button>
       </div>
     </header>
- 
   </div>
-  
   <ng-template #loggedOut>
     <header class="jumbotron">
       Please login.
     </header>
-  
   </ng-template>
