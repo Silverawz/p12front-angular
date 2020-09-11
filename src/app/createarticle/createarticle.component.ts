@@ -27,6 +27,9 @@ export class CreatearticleComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     if(this.currentUser  != null){
+      if(this.currentUser.roles.includes('ROLE_USER') && !this.currentUser.roles.includes('ROLE_ADMIN') && !this.currentUser.roles.includes('ROLE_MODERATOR')){
+        //forbidden
+      } else if (this.currentUser.roles.includes('ROLE_ADMIN') || this.currentUser.roles.includes('ROLE_MODERATOR')){
       this.content = '';
       this.validateCreate = false;
       this.activeNavBar();
@@ -34,6 +37,7 @@ export class CreatearticleComponent implements OnInit {
       this.articleIsActive = true;
       this.categories.push(new Categories(1, 'placeholderToRemove'));
       this.singleArticle = new Article(null, null, null, null, true, null, this.categories);
+      }
     }
   }
 

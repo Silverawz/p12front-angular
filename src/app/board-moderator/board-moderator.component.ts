@@ -34,12 +34,16 @@ export class BoardModeratorComponent implements OnInit {
   ngOnInit() {
     this.currentUser = this.token.getUser();  
     if(this.currentUser != null){
-      this.content = '';
-      this.validateUpdated = false;
-      this.activeNavBar();
-      this.getArticles();  
-      this.hideFormChangeArticle();
-      this.disableBtn=false;
+      if(this.currentUser.roles.includes('ROLE_USER') && !this.currentUser.roles.includes('ROLE_ADMIN') && !this.currentUser.roles.includes('ROLE_MODERATOR')){
+        this.hideFormChangeArticle();
+      } else if (this.currentUser.roles.includes('ROLE_ADMIN') || this.currentUser.roles.includes('ROLE_MODERATOR')){
+        this.content = '';
+        this.validateUpdated = false;
+        this.activeNavBar();
+        this.getArticles();  
+        this.hideFormChangeArticle();
+        this.disableBtn=false;
+      }
     }
   }
 

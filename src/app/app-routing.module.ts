@@ -12,6 +12,11 @@ import { FootballComponent } from './football/football.component';
 import { BasketballComponent } from './basketball/basketball.component';
 import { VolleyballComponent } from './volleyball/volleyball.component';
 import { CreatearticleComponent } from './createarticle/createarticle.component';
+import { ForumComponent } from './forum/forum.component';
+import { ForumFootballComponent } from './forum-football/forum-football.component';
+import { ForumVolleyballComponent } from './forum-volleyball/forum-volleyball.component';
+import { ForumBasketballComponent } from './forum-basketball/forum-basketball.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,8 +30,10 @@ const routes: Routes = [
   { path: 'basketball', component: BasketballComponent },
   { path: 'volleyball', component: VolleyballComponent },
   { path: 'createarticle', component: CreatearticleComponent },
-
-  
+  { path: 'forum', component: ForumComponent },
+  { path: 'forum-football', component: ForumFootballComponent },
+  { path: 'forum-volleyball', component: ForumVolleyballComponent },
+  { path: 'forum-basketball', component: ForumBasketballComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

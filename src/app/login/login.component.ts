@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
     document.getElementById("football").className = "unactive";
     document.getElementById("basketball").className = "unactive";
     document.getElementById("volleyball").className = "unactive";
+    document.getElementById("forum").className = "unactive";
     if(document.body.contains(document.getElementById("register")))
     document.getElementById("register").className = "unactive";
     if(document.body.contains(document.getElementById("login")))

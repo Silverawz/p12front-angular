@@ -1,50 +1,53 @@
 <div class="container" *ngIf="currentUser; else loggedOut">
-    <header class="jumbotron">
+  <header class="jumbotron">
 <div display="inline">
-  <button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" type="button" id="btn-custom1" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
-    <div *ngIf="validateCreate"  class="alert alert-success">L'article a bien été crée.</div>
-    <button type="button" id="btn-return-list-own-articles" routerLink="/mod">Accéder à la liste de vos articles</button>
-  </div><br>
-              <div class="col-md-12" id="create_article" center>
-                <h2>Page de création d'un article</h2><br>
-                <div class="card card-container">
-                <div class="form-group" id="categories_article" *ngIf="singleArticle && categoriesName">
-                  <label for="categories">Catégorie(s)</label>&nbsp;&nbsp;
-                  <div style="display:inline">
-                    <button type="button" id="activated" (click)="removeCategory(categoriesName[0])" *ngIf="validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
-                    <button type="button" id="desactivated" (click)="addCategory(categoriesName[0])" *ngIf="!validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
-                    &nbsp;&nbsp;
-                    <button type="activated" id="activated" (click)="removeCategory(categoriesName[1])" *ngIf="validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
-                    <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[1])" *ngIf="!validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
-                    &nbsp;&nbsp;
-                    <button type="activated" id="activated" (click)="removeCategory(categoriesName[2])" *ngIf="validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button>
-                    <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[2])" *ngIf="!validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button> 
-                    <div class="alert alert-danger" *ngIf="!validateCategory(categoriesName[0]) && !validateCategory(categoriesName[1]) && !validateCategory(categoriesName[2])">Au moins 1 catégorie doit être sélectionnée.</div>
-                  </div>
+<button *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')" type="button" id="btn-custom1" routerLink="/profile">Accéder à votre profil</button> &nbsp;&nbsp;
+  <div *ngIf="validateCreate"  class="alert alert-success">L'article a bien été crée.</div>
+  <button type="button" id="btn-return-list-own-articles" *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')"  routerLink="/mod">Accéder à la liste de vos articles</button>
+</div><br>
+            <div class="col-md-12" id="create_article" *ngIf="currentUser.roles.includes('ROLE_ADMIN') || currentUser.roles.includes('ROLE_MODERATOR')"  center>
+              <h2>Page de création d'un article</h2><br>
+              <div class="card card-container">
+              <div class="form-group" id="categories_article" *ngIf="singleArticle && categoriesName">
+                <label for="categories">Catégorie(s)</label>&nbsp;&nbsp;
+                <div style="display:inline">
+                  <button type="button" id="activated" (click)="removeCategory(categoriesName[0])" *ngIf="validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
+                  <button type="button" id="desactivated" (click)="addCategory(categoriesName[0])" *ngIf="!validateCategory(categoriesName[0])">{{categoriesName[0].description}}</button>
+                  &nbsp;&nbsp;
+                  <button type="activated" id="activated" (click)="removeCategory(categoriesName[1])" *ngIf="validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
+                  <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[1])" *ngIf="!validateCategory(categoriesName[1])">{{categoriesName[1].description}}</button>
+                  &nbsp;&nbsp;
+                  <button type="activated" id="activated" (click)="removeCategory(categoriesName[2])" *ngIf="validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button>
+                  <button type="desactivated" id="desactivated" (click)="addCategory(categoriesName[2])" *ngIf="!validateCategory(categoriesName[2])">{{categoriesName[2].description}}</button> 
+                  <div class="alert alert-danger" *ngIf="!validateCategory(categoriesName[0]) && !validateCategory(categoriesName[1]) && !validateCategory(categoriesName[2])">Au moins 1 catégorie doit être sélectionnée.</div>
                 </div>
-                  <div class="form-group" id="title_article" *ngIf="singleArticle">
-                    <label for="title">Title</label>
-                  <input type="title" class="form-control" name="title" [(ngModel)]="singleArticle.title" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="70"/>
-                  <div class="alert alert-danger" *ngIf="titleInputError">Le titre doit faire entre 5 et 70 caractères.</div>
-                </div>
-                  <div class="form-group" id="message_article" name="message" *ngIf="singleArticle">
-                    <label for="message">Message</label>
-                  <textarea class="form-control" rows="15" [(ngModel)]="singleArticle.message" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="1000"></textarea>
-                  <div class="alert alert-danger" *ngIf="messageInputError">Le message doit faire entre 5 et 1000 caractères.</div>
-                </div>
-                  <div class="form-group" id="activearticle" name="active" *ngIf="singleArticle">
-                    <label for="active">Activer/Desactiver cet article (Un article désactivé n'apparaît pas sur le dashboard)</label>
-                      <button type="button" id="change_article_active" (click)="change_article_active()" *ngIf="isActive()">Active</button>
-                      <button type="button" id="change_article_inactive" (click)="change_article_active()" *ngIf="!isActive()">Inactive</button>
-                  </div>
-                    <button type="button" class="btn btn-warning" id="btn-change-article" (click)="createArticle()">Valider</button>
-                    <div class="alert alert-danger" *ngIf="content=='error_message_failed_to_update_article'">Une erreur est survenue.</div>
-                  </div>  
               </div>
-    </header>
+                <div class="form-group" id="title_article" *ngIf="singleArticle">
+                  <label for="title">Title</label>
+                <input type="title" class="form-control" name="title" [(ngModel)]="singleArticle.title" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="70"/>
+                <div class="alert alert-danger" *ngIf="titleInputError">Le titre doit faire entre 5 et 70 caractères.</div>
+              </div>
+                <div class="form-group" id="message_article" name="message" *ngIf="singleArticle">
+                  <label for="message">Message</label>
+                <textarea class="form-control" rows="15" [(ngModel)]="singleArticle.message" [ngModelOptions]="{standalone: true}" required minlength="5" maxlength="1000"></textarea>
+                <div class="alert alert-danger" *ngIf="messageInputError">Le message doit faire entre 5 et 1000 caractères.</div>
+              </div>
+                <div class="form-group" id="activearticle" name="active" *ngIf="singleArticle">
+                  <label for="active">Activer/Desactiver cet article (Un article désactivé n'apparaît pas sur le dashboard)</label>
+                    <button type="button" id="change_article_active" (click)="change_article_active()" *ngIf="isActive()">Active</button>
+                    <button type="button" id="change_article_inactive" (click)="change_article_active()" *ngIf="!isActive()">Inactive</button>
+                </div>
+                  <button type="button" class="btn btn-warning" id="btn-change-article" (click)="createArticle()">Valider</button>
+                  <div class="alert alert-danger" *ngIf="content=='error_message_failed_to_update_article'">Une erreur est survenue.</div>
+                </div>  
+            </div>
+            <div *ngIf="currentUser.roles.includes('ROLE_USER') && !currentUser.roles.includes('ROLE_ADMIN') && !currentUser.roles.includes('ROLE_MODERATOR')">
+              <div class="alert alert-danger">This page is forbidden for user role.</div> 
+            </div>
+  </header>
 </div>
 <ng-template #loggedOut>
-  <header class="jumbotron">
-    Forbidden. Please login.
-  </header>
+<header class="jumbotron">
+  <div class="alert alert-danger">Forbidden, please log in.</div> 
+</header>
 </ng-template>

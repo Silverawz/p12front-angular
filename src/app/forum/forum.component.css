@@ -1,0 +1,58 @@
+#img{
+    width: 25%;
+    height: 200px;
+    padding-bottom:10px;
+    margin-bottom:10px;
+    border-radius: 40px;
+    margin-top:20px;
+    margin-left:20px;
+}
+
+.jumbotron{
+    background: linear-gradient(0deg, rgb(194, 192, 192) 62%, rgb(255, 255, 255) 94%);
+}
+
+#btn-football{
+    background: radial-gradient(circle, rgb(215, 255, 188) 31%, rgb(17, 175, 70) 65%, rgb(125, 255, 85) 84%);
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-color : black(190, 10, 10);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-left:75px;
+}
+
+#btn-basketball{
+    background: radial-gradient(circle, rgb(188, 255, 238) 31%, rgb(17, 175, 167) 65%, rgb(85, 255, 227) 84%);
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-color : black(190, 10, 10);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-left:120px;
+}
+
+#btn-volleyball{
+    background: radial-gradient(circle, rgb(253, 163, 28) 31%, rgb(236, 212, 176) 65%, rgb(252, 176, 114) 84%);
+    padding: 7px;
+    font-size: 20px;
+    border-radius: 20px;
+    border-color : black(190, 10, 10);
+    color: rgb(0, 0, 0);
+    text-align: center;
+    margin-left:113px;
+}
+
+/*
+
+@media screen and (max-width: 770px) {
+    #img_logo_sport{
+        width: 25%;
+        height: 200px;
+        padding-bottom:10px;
+        margin-bottom:10px;
+        border-radius: 40px;
+    }
+}*/

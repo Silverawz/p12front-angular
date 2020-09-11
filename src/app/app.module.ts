@@ -18,6 +18,10 @@ import { FootballComponent } from './football/football.component';
 import { BasketballComponent } from './basketball/basketball.component';
 import { VolleyballComponent } from './volleyball/volleyball.component';
 import { CreatearticleComponent } from './createarticle/createarticle.component';
+import { ForumComponent } from './forum/forum.component';
+import { ForumFootballComponent } from './forum-football/forum-football.component';
+import { ForumBasketballComponent } from './forum-basketball/forum-basketball.component';
+import { ForumVolleyballComponent } from './forum-volleyball/forum-volleyball.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,10 @@ import { CreatearticleComponent } from './createarticle/createarticle.component'
     BasketballComponent,
     VolleyballComponent,
     CreatearticleComponent,
+    ForumComponent,
+    ForumFootballComponent,
+    ForumBasketballComponent,
+    ForumVolleyballComponent,
   ],
   imports: [
     BrowserModule,
