@@ -60,7 +60,10 @@
   }
 
   #btn-custom1 {
+      /*
     background: radial-gradient(circle, rgb(188, 255, 238) 31%, rgb(17, 175, 167) 65%, rgb(85, 255, 227) 84%);
+    */
+    background:rgb(76, 236, 223);
     padding: 7px;
     font-size: 20px;
     border-radius: 20px;

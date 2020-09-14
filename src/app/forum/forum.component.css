@@ -13,7 +13,10 @@
 }
 
 #btn-football{
+    /*
     background: radial-gradient(circle, rgb(215, 255, 188) 31%, rgb(17, 175, 70) 65%, rgb(125, 255, 85) 84%);
+    */
+    background:rgb(76, 236, 111);
     padding: 7px;
     font-size: 20px;
     border-radius: 20px;
@@ -24,7 +27,10 @@
 }
 
 #btn-basketball{
+    /*
     background: radial-gradient(circle, rgb(188, 255, 238) 31%, rgb(17, 175, 167) 65%, rgb(85, 255, 227) 84%);
+    */
+    background:rgb(76, 236, 223);
     padding: 7px;
     font-size: 20px;
     border-radius: 20px;
@@ -35,7 +41,9 @@
 }
 
 #btn-volleyball{
-    background: radial-gradient(circle, rgb(253, 163, 28) 31%, rgb(236, 212, 176) 65%, rgb(252, 176, 114) 84%);
+    /*background: radial-gradient(circle, rgb(253, 163, 28) 31%, rgb(236, 212, 176) 65%, rgb(252, 176, 114) 84%);
+    */
+    background:rgb(236, 140, 76);
     padding: 7px;
     font-size: 20px;
     border-radius: 20px;

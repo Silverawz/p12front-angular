@@ -25,7 +25,10 @@
   /* Add an active class to highlight the current page */
   .topnav a.active {
     background-color: white;
+    background:rgb(99, 224, 214);
+    /*
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+    */
     color: rgb(0, 0, 0);
     text-shadow: none;
   }

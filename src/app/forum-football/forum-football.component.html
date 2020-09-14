@@ -1,43 +1,72 @@
 <header class="jumbotron">
     
     <h1>Forum Football</h1>
+    <button type="button" routerLink="/forum">Retourner à l'index des forums</button>
     <p>Veuillez respecter les règles du site lorsque vous postez un message, aucune insulte, racisme etc ne sera autorisé sous peine de banissement permanent.</p>
-    <table class="table">
+    <div style="display:inline">
+        <button type="button" id="new_topic" *ngIf="currentUser">Créer un nouveau topic</button>
+        <p *ngIf="!currentUser && !inATopicView">Vous devez être connecter pour créer un nouveau topic.</p>
+        <button type="button" id="return_list_topic" *ngIf="inATopicView" (click)="reloadPage()">Liste des sujets</button>
+        <label for="site-search" *ngIf="!inATopicView"></label>
+        <input type="search" id="search-input" *ngIf="!inATopicView">
+
+        <button class="fa fa-search" id="btn-search" *ngIf="!inATopicView" (click)="search_()"></button>
+        <div class="alert alert-danger" *ngIf="sizeError">La taille de la recherche ne doit pas dépassée 15 caractères.</div>
+    </div>
+    
+
+
+
+
+  <!--- topics -->
+    <table class="table table-striped table-sm" id="forum_football_topic" *ngIf="!inATopicView">
         <thead>
-          <tr>
-            <th scope="col">Titre</th>
-            <th scope="col">Auteur</th>
-            <th scope="col">Date de création</th>
-            <th scope="col">Date de la dernière réponse</th>
+          <tr id="row_title">
+            <th id="title">Sujet</th>
+            <th id="author">Auteur</th>
+            <th>Nbre</th>
+            <th id="date_th">Date de création</th>
+            <th id="date_th">Dernier msg</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Que faire si blabla ?</td>
-            <td>Jacob</td>
-            <td>22-03-2020</td>
-            <td>23-03-2020</td>
-          </tr>
-          <tr>
-            <td>Vous pensez quoi de bla bla</td>
-            <td>Francis</td>
-            <td>15-09-2020</td>
-            <td>15-09-2020</td>
-          </tr>
-          <tr>
-            <td>Le tournoi d'hiver</td>
-            <td>Pierre</td>
-            <td>07-11-2020</td>
-            <td>09-11-2020</td>
+          <tr *ngFor="let topic of topics">
+            <td><a (click)="getPostsFromTopic(topic.id_topic,0)">{{topic.title}}</a></td>
+            <td>{{topic.user.firstname}}</td>
+            <td *ngIf="topic.postList">{{topic.postList.length}}</td>
+            <td>{{topic.postList[0].date | date }}</td>
+            <td>date random ici</td>
           </tr>
         </tbody>
       </table>
-    
-    
-    
-    
-    
+      <ul class="nav nav-pills" *ngIf="pages && !inATopicView" id="forum_football_pages">
+        <li *ngFor="let page of pages; let i=index">
+           <a *ngIf="i!=currentPage" style="cursor: pointer" (click)="onPageTopics(i)">{{i}}</a>
+           <a *ngIf="i==currentPage" style="cursor: pointer" (click)="onPageTopics(i)"><strong>{{i}}</strong></a>
+        </li>
+      </ul>
 
-
-
+ <!--- posts -->
+    <table class="table table-striped table-sm" id="forum_football_post" *ngIf="inATopicView">
+        <thead>
+          <tr id="row_title">
+            <th id="post_message">Message</th>
+            <th id="post_author">Auteur</th>
+            <th id="post_date">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let post of posts">
+            <td>{{post.message}}</td>
+            <td>{{post.user.firstname}}</td>
+            <td>{{post.date | date }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="nav nav-pills" *ngIf="pages && inATopicView" id="forum_football_pages">
+        <li *ngFor="let page of pages; let i=index">
+           <a *ngIf="i!=currentPage" style="cursor: pointer" (click)="onPagePosts(i)">{{i}}</a>
+           <a *ngIf="i==currentPage" style="cursor: pointer" (click)="onPagePosts(i)"><strong>{{i}}</strong></a>
+        </li>
+      </ul>
 </header>
