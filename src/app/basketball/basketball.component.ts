@@ -12,7 +12,7 @@ export class BasketballComponent implements OnInit {
   constructor(private sportService: SportService) { }
   errorMessage = '';
   articles: Article[];
-  size:number=1;
+  size:number=3;
   currentPage:number=0;
   totalPages:number;
   pages:Array<number>;
