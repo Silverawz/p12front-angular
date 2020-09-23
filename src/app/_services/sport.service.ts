@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article } from "../classes/article";
 
-const API_URL = 'http://localhost:8080/api/sport/';
+const API_URL = 'http://localhost:8082/AssociationsSportives-0.0.1-SNAPSHOT/api/sport/';
 
 @Injectable({
   providedIn: 'root'
